@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.chiknas'
+version = '0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.vaadin.com/vaadin-addons"
+    }
+}
+
+ext {
+    set('vaadinVersion', "13.0.13")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.vaadin:vaadin-spring-boot-starter'
+    implementation 'com.vaadin:vaadin-charts-flow'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

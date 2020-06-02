@@ -1,0 +1,22 @@
+html{
+    background-color: bisque;
+}
+
+.top-bar{
+    width: 100%;
+    height: 75px;
+    background-color: #deb035;
+}
+
+vaadin-list-box{
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
+    background-color: aliceblue;
+    width: 50%;
+    height: 70%;
+}
+
+vaadin-button{
+    color: #00053a;
+}
