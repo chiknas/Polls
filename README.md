@@ -1,4 +1,5 @@
 # Polls
+<img src="pollchart.png" width="40%">  |  <img src="pollanswers.png" width="40%">  
 ### How to use
 1. Click the Create Poll button on the top bar menu.
 
