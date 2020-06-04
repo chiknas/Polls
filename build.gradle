@@ -5,6 +5,10 @@ plugins {
     id 'war'
 }
 
+war {
+    enabled = true
+}
+
 group = 'com.chiknas'
 version = '0.1'
 sourceCompatibility = '1.8'
@@ -21,6 +25,10 @@ ext {
 }
 
 dependencies {
+    //heroku
+    compile 'com.github.jsimone:webapp-runner'
+    implementation 'org.postgresql:postgresql'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.vaadin:vaadin-spring-boot-starter'
@@ -41,3 +49,18 @@ dependencyManagement {
 test {
     useJUnitPlatform()
 }
+
+//HEROKU DEPLOYMENT SETUP
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/server"
+    from(configurations.compile) {
+        include "webapp-runner*"
+    }
+}
+
+stage.dependsOn(copyToLib)
